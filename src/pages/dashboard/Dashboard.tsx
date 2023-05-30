@@ -1,30 +1,13 @@
 import React, { FC, ReactElement } from 'react';
 import { Grid } from '@mui/material';
+import Sidebar from '../../components/sidebar/Sidebar';
+import ContentArea from '../../components/contentArea/ContentArea';
 
 const Dashboard: FC = (): ReactElement => {
   return (
     <Grid container minHeight="100vh" p={0} m={0}>
-      <Grid item md={8} px={4}>
-        <h2>Content Area</h2>
-      </Grid>
-      <Grid
-        item
-        md={4}
-        sx={{
-          height: '100vh',
-          position: 'fixed',
-          right: 0,
-          top: 0,
-          width: '100%',
-          backgroundColor: 'background.paper',
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <h2>Sidebar Area</h2>
-      </Grid>
+      <ContentArea />
+      <Sidebar />
     </Grid>
   );
 };
