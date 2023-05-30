@@ -1,10 +1,13 @@
 import React, { FC, ReactElement } from 'react';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { customTheme } from './theme/customTheme';
 
 const App: FC = (): ReactElement => {
   return (
-    <div>
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
       <h1>Hey</h1>
-    </div>
+    </ThemeProvider>
   );
 };
 
