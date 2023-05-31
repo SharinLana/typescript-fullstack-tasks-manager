@@ -20,7 +20,7 @@ const ContentArea: FC = (): ReactElement => {
         alignItems: 'center',
       }}
     >
-      <Profile />
+      <Profile name="Svetlana"/>
     </Grid>
   );
 };
