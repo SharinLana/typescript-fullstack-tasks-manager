@@ -17,6 +17,7 @@ const TaskSelectField: FC = (): ReactElement => {
         value=""
         label="Status"
         name="status"
+        onChange={e => console.log(e)}
       >
         <MenuItem value={10}>Ten</MenuItem>
         <MenuItem value={20}>Twenty</MenuItem>
