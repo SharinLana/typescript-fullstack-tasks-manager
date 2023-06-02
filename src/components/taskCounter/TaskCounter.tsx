@@ -10,10 +10,28 @@ const TaskCounter: FC = (): ReactElement => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar>
-          <Typography>10</Typography>
+        <Avatar
+          sx={{
+            backgroundColor: 'transparent',
+            border: '5px solid',
+            width: '96px',
+            height: '96px',
+            marginBottom: '16px',
+            borderColor: 'warning.light',
+          }}
+        >
+          <Typography variant="h4" color="#fffff">
+            10
+          </Typography>
         </Avatar>
-        <Typography>Subtitle</Typography>
+        <Typography
+          color="#ffff"
+          fontWeight="bold"
+          fontSize="20px"
+          variant="h5"
+        >
+          Subtitle
+        </Typography>
       </Box>
     </>
   );
