@@ -1,5 +1,5 @@
 export interface ITaskFooter {
-  onStatusChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onStatusChange?: (e: React.SyntheticEvent<Element, Event>) => void;
   onClick?: (
     e:
       | React.MouseEvent<HTMLButtonElement>
