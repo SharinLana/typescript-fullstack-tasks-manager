@@ -6,7 +6,7 @@ import { emitCorrectBorderColor } from './helpers/emitCorrectBorderColor';
 import { emitCorrectLabel } from './helpers/emitCorrectLabel';
 
 const TaskCounter: FC<ITaskCounter> = (props): ReactElement => {
-  const { status = Status.completed, count = 0 } = props;
+  const { status = Status.completed, count=0 } = props;
 
   return (
     <>
@@ -26,12 +26,12 @@ const TaskCounter: FC<ITaskCounter> = (props): ReactElement => {
             borderColor: `${emitCorrectBorderColor(status)}`,
           }}
         >
-          <Typography variant="h4" color="#fffff">
-            10
+          <Typography variant="h4" color="white">
+            {count}
           </Typography>
         </Avatar>
         <Typography
-          color="#ffff"
+          color="#fffff"
           fontWeight="bold"
           fontSize="20px"
           variant="h5"
