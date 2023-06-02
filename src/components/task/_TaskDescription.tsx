@@ -1,10 +1,12 @@
 import React, { FC, ReactElement } from 'react';
 import { Box, Typography } from '@mui/material';
+import { ITaskDescription } from './interfaces/ITaskDescription';
 
-const TaskDescription: FC = (): ReactElement => {
+const TaskDescription: FC<ITaskDescription> = (props): ReactElement => {
+  const { description = 'Default description' } = props;
   return (
     <Box>
-      <Typography>Test description</Typography>
+      <Typography>{description}</Typography>
     </Box>
   );
 };
