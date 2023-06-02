@@ -3,12 +3,12 @@ import { Box, Chip, Typography } from '@mui/material';
 
 const TaskHeader: FC = (): ReactElement => {
   return (
-    <Box>
+    <Box display="flex" width="100%" justify-content="space-between" mb={4}>
       <Box>
-        <Typography>Default Header</Typography>
+        <Typography variant="h6">Default Header</Typography>
       </Box>
       <Box>
-        <Chip />
+        <Chip variant="outlined" />
       </Box>
     </Box>
   );
