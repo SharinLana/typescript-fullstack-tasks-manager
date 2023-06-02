@@ -1,7 +1,11 @@
 import React, { FC, ReactElement } from 'react';
 import { Avatar, Box, Typography } from '@mui/material';
+import { ITaskCounter } from './interfaces/ITaskCounter';
+import { Status } from '../taskForm/enums/Status';
 
-const TaskCounter: FC = (): ReactElement => {
+const TaskCounter: FC<ITaskCounter> = (props): ReactElement => {
+  const { status = Status.completed, count = 0 } = props;
+
   return (
     <>
       <Box
