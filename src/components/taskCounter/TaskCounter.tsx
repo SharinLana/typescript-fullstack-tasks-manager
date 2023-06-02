@@ -3,6 +3,7 @@ import { Avatar, Box, Typography } from '@mui/material';
 import { ITaskCounter } from './interfaces/ITaskCounter';
 import { Status } from '../taskForm/enums/Status';
 import { emitCorrectBorderColor } from './helpers/emitCorrectBorderColor';
+import { emitCorrectLabel } from './helpers/emitCorrectLabel';
 
 const TaskCounter: FC<ITaskCounter> = (props): ReactElement => {
   const { status = Status.completed, count = 0 } = props;
@@ -35,7 +36,7 @@ const TaskCounter: FC<ITaskCounter> = (props): ReactElement => {
           fontSize="20px"
           variant="h5"
         >
-          Subtitle
+          {emitCorrectLabel(status)}
         </Typography>
       </Box>
     </>
