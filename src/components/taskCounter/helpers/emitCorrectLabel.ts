@@ -4,9 +4,9 @@ import { Status } from '../../taskForm/enums/Status';
 export const emitCorrectLabel = (status: TaskCounterStatusType): string => {
   switch (status) {
     case Status.todo:
-      return 'Todo';
+      return `Todo's`;
     case Status.completed:
-      return 'Success';
+      return 'Completed';
     case Status.inProgress:
       return 'In Progress';
   }
