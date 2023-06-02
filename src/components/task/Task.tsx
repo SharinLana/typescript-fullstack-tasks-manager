@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { Box } from '@mui/material';
 import TaskHeader from './_TaskHeader';
 import TaskDescription from './_TaskDescription';
+import TaskFooter from './_TaskFooter';
 
 const Task: FC = (): ReactElement => {
   return (
@@ -22,6 +23,7 @@ const Task: FC = (): ReactElement => {
     >
       <TaskHeader />
       <TaskDescription />
+      <TaskFooter />
     </Box>
   );
 };
