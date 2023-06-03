@@ -1,11 +1,11 @@
-require("dotenv").config();
-const express = require("express");
+// require("dotenv").config();
+import express, { Express, Request, Response } from "express";
 
-const app = express();
+const app: Express = express();
 
 const port = process.env.PORT || 3200;
 
-app.use("/", (req, res) => {
+app.use("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript");
 });
 
@@ -15,4 +15,4 @@ const start = async () => {
   });
 };
 
-start()
+start();
