@@ -6,6 +6,7 @@ import TaskFooter from './_TaskFooter';
 import { ITask } from './interfaces/ITask';
 import { Priority } from '../taskForm/enums/Priority';
 import { Status } from '../taskForm/enums/Status';
+import { emitBorderColor } from './helpers/emitBorderColor';
 
 const Task: FC<ITask> = (props): ReactElement => {
   const {
@@ -31,7 +32,7 @@ const Task: FC<ITask> = (props): ReactElement => {
         backgroundColor: 'background.paper',
         borderRadius: '8px',
         border: '1px solid',
-        borderColor: `${}`,
+        borderColor: emitBorderColor(priority),
       }}
     >
       <TaskHeader title={title} date={date} />
