@@ -31,7 +31,7 @@ const Task: FC<ITask> = (props): ReactElement => {
         backgroundColor: 'background.paper',
         borderRadius: '8px',
         border: '1px solid',
-        borderColor: 'error.light',
+        borderColor: `${}`,
       }}
     >
       <TaskHeader title={title} date={date} />
