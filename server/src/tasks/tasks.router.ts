@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 
-const router: Router = Router();
+const tasksRouter: Router = Router();
 
-router.get('/', (req: Request, res: Response) => {
+tasksRouter.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript');
 });
 
-export default router;
+export default tasksRouter;
