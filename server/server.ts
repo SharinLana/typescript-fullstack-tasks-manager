@@ -2,8 +2,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express, { Express, Request, Response } from 'express';
 import { DataSource } from 'typeorm';
+import cors from 'cors';
 
 const app: Express = express();
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cors());
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
