@@ -1,9 +1,10 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import { DataSource } from 'typeorm';
 import cors from 'cors';
 
+import TasksRouter from './src/tasks/tasks.router';
 import { Task } from './src/tasks/tasks.entity';
 
 const app: Express = express();
@@ -25,9 +26,7 @@ export const AppDataSource = new DataSource({
 
 const port = process.env.PORT || 3200;
 
-app.use('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript');
-});
+app.use(TasksRouter);
 
 AppDataSource.initialize()
   .then(() => {
