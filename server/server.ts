@@ -26,7 +26,7 @@ export const AppDataSource = new DataSource({
 
 const port = process.env.PORT || 3200;
 
-app.use(TasksRouter);
+app.use("/", TasksRouter);
 
 AppDataSource.initialize()
   .then(() => {
