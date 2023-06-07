@@ -4,6 +4,8 @@ import express, { Express, Request, Response } from 'express';
 import { DataSource } from 'typeorm';
 import cors from 'cors';
 
+import { Task } from './src/tasks/tasks.entity';
+
 const app: Express = express();
 
 app.use(express.urlencoded({ extended: false }));
@@ -17,6 +19,7 @@ export const AppDataSource = new DataSource({
   username: process.env.MYSQL_USERNAME,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DB,
+  entities: [Task],
   synchronize: true, // for development mode.
 });
 
