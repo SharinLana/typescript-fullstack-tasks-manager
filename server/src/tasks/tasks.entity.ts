@@ -1,3 +1,9 @@
-import { Entity } from 'typeorm'; // a decoractor
+import { Entity, PrimaryGeneratedColumn } from 'typeorm'; // decorators
+// import { Priority } from '../enums/Priority';
+// import { Status } from '../enums/Status';
 
-export class Task {}
+@Entity()
+export class Task {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+}
