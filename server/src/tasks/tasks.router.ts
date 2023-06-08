@@ -3,9 +3,10 @@ import { TaskController } from './tasks.controller';
 
 const tasksRouter: Router = Router();
 
-tasksRouter.get('/', (req: Request, res: Response) => {
+tasksRouter.get('/', async (req: Request, res: Response) => {
   const taskController = new TaskController();
-  taskController.getAll();
+  const allTasks = await taskController.getAll();
+  res.status(200).json(allTasks);
 });
 
 export default tasksRouter;
