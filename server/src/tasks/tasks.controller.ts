@@ -3,7 +3,7 @@ import { Task } from './tasks.entity';
 import { AppDataSource } from '../../server';
 import { instanceToPlain } from 'class-transformer';
 
-export class TaskController {
+class TaskController {
   constructor(private taskRepository = AppDataSource.getRepository(Task)) {}
   // @ts-ignore
   public async getAll(): Promise<Task[]> {
@@ -25,3 +25,5 @@ export class TaskController {
     }
   }
 }
+
+export const taskController = new TaskController();
