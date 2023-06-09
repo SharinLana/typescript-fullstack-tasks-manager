@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Request, Response } from 'express';
 import { Task } from './tasks.entity';
 import { AppDataSource } from '../../server';
 import { instanceToPlain } from 'class-transformer';
 
 class TaskController {
-  constructor(private taskRepository = AppDataSource.getRepository(Task)) {}
-  // @ts-ignore
-  public async getAll(): Promise<Task[]> {
+  public async getAll(req: Request, res: Response): Promise<Response> {
     let allTasks: Task[];
 
     try {
-      allTasks = await this.taskRepository.find({
+      allTasks = await AppDataSource.getRepository(Task).find({
         order: {
           date: 'ASC',
         },
@@ -19,9 +18,9 @@ class TaskController {
       // Convert the tasks instance to an array of objects
       allTasks = instanceToPlain(allTasks) as Task[];
 
-      return allTasks;
+      return res.status(200).json(allTasks);
     } catch (err) {
-      console.log(err);
+      return res.status(500).json({ err: 'internal server error' });
     }
   }
 }
