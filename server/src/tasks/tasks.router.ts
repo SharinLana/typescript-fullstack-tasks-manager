@@ -1,15 +1,11 @@
 import { Router, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { TaskController } from './tasks.controller';
+import {taskController} from './tasks.controller';
 import { createValidator } from './tasks.validator';
 
 const tasksRouter: Router = Router();
 
-tasksRouter.get('/', async (req: Request, res: Response) => {
-  const taskController = new TaskController();
-  const allTasks = await taskController.getAll();
-  res.status(200).json(allTasks);
-});
+tasksRouter.get('/', taskController.getAll);
 
 tasksRouter.post(
   '/task',
