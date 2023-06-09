@@ -9,4 +9,9 @@ tasksRouter.get('/', async (req: Request, res: Response) => {
   res.status(200).json(allTasks);
 });
 
+tasksRouter.post('/task', async (req: Request, res: Response) => {
+  
+})
+
 export default tasksRouter;
+
