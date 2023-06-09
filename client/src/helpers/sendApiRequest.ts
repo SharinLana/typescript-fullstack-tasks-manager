@@ -12,7 +12,7 @@ const sendCorrectMethod = (method: Method, data: unknown): RequestInit => {
 
   return {
     method: method,
-    json: JSON.stringify(data),
+    body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
     },
@@ -24,5 +24,12 @@ export async function sendApiRequest<T>(
   method: Method,
   data: unknown = {},
 ): Promise<T> {
-  const response = await fetch(url, {});
+  const response = await fetch(url, sendCorrectMethod(method, data));
+
+  if (!response.ok) {
+    const message = `An error has occurred: ${response.status}`;
+    throw new Error(message);
+  }
+
+  return (await response.json()) as Promise<T>;
 }
