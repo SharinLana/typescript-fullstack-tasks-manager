@@ -1,4 +1,6 @@
 export interface ITaskFooter {
+  id: string;
+  status?: string;
   onStatusChange?: (e: React.SyntheticEvent<Element, Event>) => void;
   onClick?: (
     e:
