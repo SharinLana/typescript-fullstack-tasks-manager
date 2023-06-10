@@ -1,10 +1,20 @@
 import React, { FC, ReactElement } from 'react';
 import { format } from 'date-fns';
 import { Grid, Box } from '@mui/material';
+import { useQuery } from 'react-query';
 import TaskCounter from '../taskCounter/TaskCounter';
 import Task from '../task/Task';
+import { sendApiRequest } from '../../helpers/sendApiRequest';
+import { ICreateTaskResponse } from './interfaces/ICreateTaskResponse';
 
 const ContentArea: FC = (): ReactElement => {
+  const { error, isLoading, data, refetch } = useQuery('tasks', async () => {
+    return await sendApiRequest<ICreateTaskResponse[]>(
+      'http://localhost:3200/',
+      'GET',
+    );
+  });
+
   return (
     <Grid item md={8} px={4}>
       <Box mb={8} px={4}>
