@@ -10,6 +10,7 @@ import { emitBorderColor } from './helpers/emitBorderColor';
 
 const Task: FC<ITask> = (props): ReactElement => {
   const {
+    id,
     title = 'Test Title',
     date = new Date(),
     description = 'Test Description',
@@ -37,7 +38,12 @@ const Task: FC<ITask> = (props): ReactElement => {
     >
       <TaskHeader title={title} date={date} />
       <TaskDescription description={description} />
-      <TaskFooter onStatusChange={onStatusChange} onClick={onClick} />
+      <TaskFooter
+        onStatusChange={onStatusChange}
+        onClick={onClick}
+        id={id}
+        status={status}
+      />
     </Box>
   );
 };

@@ -1,9 +1,12 @@
 import React, { FC, ReactElement } from 'react';
 import { Box, Button, Switch, FormControlLabel } from '@mui/material';
 import { ITaskFooter } from './interfaces/ITaskFooter';
+import {Status} from "../taskForm/enums/Status";
 
 const TaskFooter: FC<ITaskFooter> = (props): ReactElement => {
   const {
+    id,
+    status,
     onStatusChange = (e) => console.log(e),
     onClick = (e) => console.log(e),
   } = props;
