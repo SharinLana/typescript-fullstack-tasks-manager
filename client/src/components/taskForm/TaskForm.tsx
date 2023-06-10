@@ -71,15 +71,24 @@ const TaskForm: FC = (): ReactElement => {
       </Typography>
 
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <TaskTitleField onChange={(e) => setTitle(e.target.value)} />
+        <TaskTitleField
+          onChange={(e) => setTitle(e.target.value)}
+          disabled={createTaskMutation.isLoading}
+        />
         <TaskDescriptionField
           onChange={(e) => setDescription(e.target.value)}
+          disabled={createTaskMutation.isLoading}
         />
-        <TaskDateField value={date} onChange={(date) => setDate(date)} />
+        <TaskDateField
+          value={date}
+          onChange={(date) => setDate(date)}
+          disabled={createTaskMutation.isLoading}
+        />
       </Stack>
 
       <Stack direction="row" sx={{ width: '100%' }} spacing={2} mt={2}>
         <TaskSelectField
+          disabled={createTaskMutation.isLoading}
           label="Status"
           name="status"
           value={status}
@@ -94,6 +103,7 @@ const TaskForm: FC = (): ReactElement => {
           ]}
         />
         <TaskSelectField
+          disabled={createTaskMutation.isLoading}
           label="Priority"
           name="priority"
           value={priority}
