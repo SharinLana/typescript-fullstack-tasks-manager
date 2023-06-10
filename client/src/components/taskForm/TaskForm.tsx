@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -25,6 +25,7 @@ const TaskForm: FC = (): ReactElement => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [priority, setPriority] = useState<string>(Priority.normal);
   const [status, setStatus] = useState<string>(Status.todo);
+  const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
 
   const createTaskMutation = useMutation((data: ICreateTask) =>
     sendApiRequest<ICreateTaskResponse>(
@@ -49,6 +50,21 @@ const TaskForm: FC = (): ReactElement => {
 
     createTaskMutation.mutate(task);
   };
+
+  useEffect(() => {
+    if (createTaskMutation.isSuccess) {
+      setShowSuccessAlert(true);
+    }
+
+    const alertTimeout = setTimeout(() => {
+      setShowSuccessAlert(false);
+    }, 7000);
+
+    return () => {
+      clearTimeout(alertTimeout);
+    };
+    
+  }, [createTaskMutation.isSuccess]);
 
   return (
     <Box
