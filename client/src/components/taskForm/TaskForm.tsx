@@ -1,5 +1,14 @@
 import React, { FC, ReactElement, useState } from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Stack,
+  LinearProgress,
+  Button,
+  Alert,
+  AlertTitle,
+} from '@mui/material';
+import { useMutation } from 'react-query';
 import TaskTitleField from './_taskTitleField';
 import TaskDescriptionField from './_taskDescriptionField';
 import TaskDateField from './_taskDateField';
@@ -25,6 +34,11 @@ const TaskForm: FC = (): ReactElement => {
         width: '100%',
       }}
     >
+      <Alert severity="success" sx={{ width: '100%', marginBottom: '16px' }}>
+        <AlertTitle>Success</AlertTitle>
+        The task has been created successfully
+      </Alert>
+
       <Typography mb={2} component="h2" variant="h6">
         Create a Task
       </Typography>
@@ -66,6 +80,17 @@ const TaskForm: FC = (): ReactElement => {
             { value: Priority.low, label: Priority.low.toUpperCase() },
           ]}
         />
+      </Stack>
+
+      <Stack
+        sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+        spacing={2}
+        mt={2}
+      >
+        <LinearProgress style={{ width: '100%' }} />
+        <Button variant="contained" size="large" fullWidth>
+          Create a Task
+        </Button>
       </Stack>
     </Box>
   );
