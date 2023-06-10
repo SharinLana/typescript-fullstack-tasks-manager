@@ -63,7 +63,6 @@ const TaskForm: FC = (): ReactElement => {
     return () => {
       clearTimeout(alertTimeout);
     };
-    
   }, [createTaskMutation.isSuccess]);
 
   return (
@@ -77,10 +76,12 @@ const TaskForm: FC = (): ReactElement => {
         width: '100%',
       }}
     >
-      <Alert severity="success" sx={{ width: '100%', marginBottom: '16px' }}>
-        <AlertTitle>Success</AlertTitle>
-        The task has been created successfully
-      </Alert>
+      {showSuccessAlert && (
+        <Alert severity="success" sx={{ width: '100%', marginBottom: '16px' }}>
+          <AlertTitle>Success</AlertTitle>
+          The task has been created successfully
+        </Alert>
+      )}
 
       <Typography mb={2} component="h2" variant="h6">
         Create a Task
