@@ -114,8 +114,11 @@ const TaskForm: FC = (): ReactElement => {
         spacing={2}
         mt={2}
       >
-        <LinearProgress style={{ width: '100%' }} />
+        {createTaskMutation.isLoading && (
+          <LinearProgress style={{ width: '100%' }} />
+        )}
         <Button
+          disabled={!title || !description || !date || !priority || !status}
           variant="contained"
           size="large"
           fullWidth
