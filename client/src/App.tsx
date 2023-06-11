@@ -4,6 +4,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { customTheme } from './theme/customTheme';
 import Dashboard from './pages/dashboard/Dashboard';
+import ComposeContext from './context/Compose.context';
+import { rootContext } from './context/root.context';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -11,10 +13,12 @@ const queryClient = new QueryClient();
 const App: FC = (): ReactElement => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={customTheme}>
-        <CssBaseline />
-        <Dashboard />
-      </ThemeProvider>
+      <ComposeContext components={rootContext}>
+        <ThemeProvider theme={customTheme}>
+          <CssBaseline />
+          <Dashboard />
+        </ThemeProvider>
+      </ComposeContext>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
