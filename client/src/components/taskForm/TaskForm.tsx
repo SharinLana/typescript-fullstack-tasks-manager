@@ -17,7 +17,7 @@ import { Status } from './enums/Status';
 import { Priority } from './enums/Priority';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ICreateTask } from '../contentArea/interfaces/ICreateTask';
-import { ICreateTaskResponse } from '../contentArea/interfaces/ICreateTaskResponse';
+import { ITaskApi } from '../contentArea/interfaces/ITaskApi';
 
 const TaskForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<string | undefined>(undefined);
@@ -28,11 +28,7 @@ const TaskForm: FC = (): ReactElement => {
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
 
   const createTaskMutation = useMutation((data: ICreateTask) =>
-    sendApiRequest<ICreateTaskResponse>(
-      'http://localhost:3200/tasks',
-      'POST',
-      data,
-    ),
+    sendApiRequest<ITaskApi>('http://localhost:3200/tasks', 'POST', data),
   );
 
   const createTaskHandler = () => {

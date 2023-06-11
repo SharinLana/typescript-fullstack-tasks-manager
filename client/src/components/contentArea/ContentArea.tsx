@@ -5,16 +5,14 @@ import { useQuery, useMutation } from 'react-query';
 import TaskCounter from '../taskCounter/TaskCounter';
 import Task from '../task/Task';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
-import { ICreateTaskResponse } from './interfaces/ICreateTaskResponse';
+import { ITaskApi } from './interfaces/ITaskApi';
 import { IUpdateTask } from '../taskForm/interfaces/IUpdateTask';
 import { Status } from '../taskForm/enums/Status';
+import { countTasks } from './helpers/countTasks';
 
 const ContentArea: FC = (): ReactElement => {
   const { error, isLoading, data, refetch } = useQuery('tasks', async () => {
-    return await sendApiRequest<ICreateTaskResponse[]>(
-      'http://localhost:3200/',
-      'GET',
-    );
+    return await sendApiRequest<ITaskApi[]>('http://localhost:3200/', 'GET');
   });
 
   // update inProgress task status
