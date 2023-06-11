@@ -7,6 +7,6 @@ const tasksRouter: Router = Router();
 tasksRouter.get('/', taskController.getAll);
 
 tasksRouter.post('/tasks', createValidator, taskController.addTask);
-tasksRouter.put('/task', updateValidator, taskController.updateTask);
+tasksRouter.put('/tasks', updateValidator, taskController.updateTask);
 
 export default tasksRouter;
