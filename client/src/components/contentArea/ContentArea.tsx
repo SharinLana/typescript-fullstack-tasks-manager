@@ -6,6 +6,8 @@ import TaskCounter from '../taskCounter/TaskCounter';
 import Task from '../task/Task';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ICreateTaskResponse } from './interfaces/ICreateTaskResponse';
+import { IUpdateTask } from '../taskForm/interfaces/IUpdateTask';
+import {Status} from "../taskForm/enums/Status";
 
 const ContentArea: FC = (): ReactElement => {
   const { error, isLoading, data, refetch } = useQuery('tasks', async () => {
@@ -16,9 +18,18 @@ const ContentArea: FC = (): ReactElement => {
   });
 
   // update inProgress task status
-  const updateTaskMutation = useMutation((data) =>
+  const updateTaskMutation = useMutation((data: IUpdateTask) =>
     sendApiRequest('http://localhost:3200/tasks', 'PUT', data),
   );
+
+  const onStatusChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+    updateTaskMutation.mutate({
+      id,
+      status: e.target.checked
+      ? Status.inProgress 
+      : Status.todo,
+    })
+  }
 
   return (
     <Grid item md={8} px={4}>
@@ -72,6 +83,7 @@ const ContentArea: FC = (): ReactElement => {
                   date={new Date(task.date)}
                   status={task.status}
                   priority={task.priority}
+                  onStatusChange={onStatusChangeHandler}
                 />
               );
             })
