@@ -57,9 +57,18 @@ const ContentArea: FC = (): ReactElement => {
           xs={12}
           mb={8}
         >
-          <TaskCounter status={Status.todo} />
-          <TaskCounter status={Status.inProgress} />
-          <TaskCounter status={Status.completed} />
+          <TaskCounter
+            status={Status.todo}
+            count={data ? countTasks(data, Status.todo) : undefined}
+          />
+          <TaskCounter
+            status={Status.inProgress}
+            count={data ? countTasks(data, Status.inProgress) : undefined}
+          />
+          <TaskCounter
+            status={Status.completed}
+            count={data ? countTasks(data, Status.completed) : undefined}
+          />
         </Grid>
         <Grid item display="flex" flexDirection="column" xs={10} md={8}>
           {error ? (
