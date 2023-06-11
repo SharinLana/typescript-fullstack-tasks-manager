@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { format } from 'date-fns';
 import { Grid, Box, Alert, LinearProgress } from '@mui/material';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import TaskCounter from '../taskCounter/TaskCounter';
 import Task from '../task/Task';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
@@ -14,6 +14,11 @@ const ContentArea: FC = (): ReactElement => {
       'GET',
     );
   });
+
+  // update inProgress task status
+  const updateTaskMutation = useMutation((data) =>
+    sendApiRequest('http://localhost:3200/tasks', 'PUT', data),
+  );
 
   return (
     <Grid item md={8} px={4}>
@@ -57,17 +62,19 @@ const ContentArea: FC = (): ReactElement => {
           ) : (
             Array.isArray(data) &&
             data.length > 0 &&
-            data?.map((task, index) => (
-              <Task
-                key={index + task.priority}
-                id={task.id}
-                title={task.title}
-                description={task.description}
-                date={new Date(task.date)}
-                status={task.status}
-                priority={task.priority}
-              />
-            ))
+            data?.map((task, index) => {
+              return (
+                <Task
+                  key={index + task.priority}
+                  id={task.id}
+                  title={task.title}
+                  description={task.description}
+                  date={new Date(task.date)}
+                  status={task.status}
+                  priority={task.priority}
+                />
+              );
+            })
           )}
         </Grid>
       </Grid>
