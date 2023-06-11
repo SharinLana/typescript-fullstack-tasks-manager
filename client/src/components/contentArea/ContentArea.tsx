@@ -52,9 +52,23 @@ const ContentArea: FC = (): ReactElement => {
               tasks
             </Alert>
           )}
-          <Task id="1" />
-          <Task id="2" />
-          <Task id="3" />
+          {isLoading ? (
+            <LinearProgress style={{ width: '100%' }} />
+          ) : (
+            Array.isArray(data) &&
+            data.length > 0 &&
+            data?.map((task, index) => (
+              <Task
+                key={index + task.priority}
+                id={task.id}
+                title={task.title}
+                description={task.description}
+                date={new Date(task.date)}
+                status={task.status}
+                priority={task.priority}
+              />
+            ))
+          )}
         </Grid>
       </Grid>
     </Grid>
