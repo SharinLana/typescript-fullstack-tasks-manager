@@ -7,7 +7,7 @@ import Task from '../task/Task';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ICreateTaskResponse } from './interfaces/ICreateTaskResponse';
 import { IUpdateTask } from '../taskForm/interfaces/IUpdateTask';
-import {Status} from "../taskForm/enums/Status";
+import { Status } from '../taskForm/enums/Status';
 
 const ContentArea: FC = (): ReactElement => {
   const { error, isLoading, data, refetch } = useQuery('tasks', async () => {
@@ -22,14 +22,24 @@ const ContentArea: FC = (): ReactElement => {
     sendApiRequest('http://localhost:3200/tasks', 'PUT', data),
   );
 
-  const onStatusChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+  const onStatusChangeHandler = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    id: string,
+  ) => {
     updateTaskMutation.mutate({
       id,
-      status: e.target.checked
-      ? Status.inProgress 
-      : Status.todo,
-    })
-  }
+      status: e.target.checked ? Status.inProgress : Status.todo,
+    });
+  };
+
+  const markCompleteHandler = (
+    e:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+  ) => {
+    updateTaskMutation.mutate({ id, status: Status.completed });
+  };
 
   return (
     <Grid item md={8} px={4}>
@@ -84,6 +94,7 @@ const ContentArea: FC = (): ReactElement => {
                   status={task.status}
                   priority={task.priority}
                   onStatusChange={onStatusChangeHandler}
+                  onClick={markCompleteHandler}
                 />
               );
             })
