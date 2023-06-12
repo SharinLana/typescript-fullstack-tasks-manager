@@ -1,4 +1,10 @@
-import React, { FC, ReactElement, useState, useEffect } from 'react';
+import React, {
+  FC,
+  ReactElement,
+  useState,
+  useEffect,
+  useContext,
+} from 'react';
 import {
   Box,
   Typography,
@@ -18,6 +24,7 @@ import { Priority } from './enums/Priority';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ICreateTask } from '../contentArea/interfaces/ICreateTask';
 import { ITaskApi } from '../contentArea/interfaces/ITaskApi';
+import { TaskStatusChangedContext } from '../../context';
 
 const TaskForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<string | undefined>(undefined);
@@ -26,6 +33,8 @@ const TaskForm: FC = (): ReactElement => {
   const [priority, setPriority] = useState<string>(Priority.normal);
   const [status, setStatus] = useState<string>(Status.todo);
   const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
+
+  const taskUpdatedContext = useContext(TaskStatusChangedContext);
 
   const createTaskMutation = useMutation((data: ICreateTask) =>
     sendApiRequest<ITaskApi>('http://localhost:3200/tasks', 'POST', data),
@@ -50,6 +59,7 @@ const TaskForm: FC = (): ReactElement => {
   useEffect(() => {
     if (createTaskMutation.isSuccess) {
       setShowSuccessAlert(true);
+      taskUpdatedContext.toggle();
     }
 
     const alertTimeout = setTimeout(() => {
